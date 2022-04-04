@@ -2,10 +2,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Cipher</title>
-  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="static/css/base.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="/static/js/index.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
 <body>
   <div id="content">
