@@ -41,7 +41,7 @@ ul {
   display: none;
 }
 *::placeholder {
-  color: white;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 #content {
@@ -217,7 +217,6 @@ input {
   background: none;
   border: none;
   outline: none;
-  border-bottom: 1px solid white;
   line-height: 1.5em;
 }
 
