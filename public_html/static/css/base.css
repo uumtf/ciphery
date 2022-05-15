@@ -1,126 +1,261 @@
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: 'Inter', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700&display=swap');
 
-#content {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1.5fr;
-  grid-column-gap: 1%;
-  height: 98vh;
-  width: 98vw;
-  margin: 1vh 1vw 1vh 1vw;
-}
 
-#content > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+:root {
+    --big-font-size: 26px;
+    --normal-font-size: 20px;
+    --small-font-size: 16px;
+    --dark-grey-fill-color: #384350;
+    --light-grey-fill-color: #434E5C;
+    --grey-border-color: #4B5563;
+    --blue-fill-color: #4BC0DA;
+    --blue-border-color: #20D7FF;
+    --violet-fill-color: #DE5BEA;
+    --red-color: rgba(234, 91, 125, 0.65);
 }
-
-.label {
-  border: 1px solid black;
-  box-sizing: border-box;
-  flex: 0 0 5%; 
-  text-align: center;
-}
-
-.list {
-  flex: 0 0 94%; 
-  border: 1px solid black;
-  box-sizing: border-box;
-}
-
-.textarea {
-  flex: 0 0 43.5%;
-  border: 1px solid black;
-  box-sizing: border-box;
-}
-
-textarea {
-  resize: none;
-  position: relative;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-#go_button {
-  flex: 0 0 5%; 
-  text-align: center;
-  cursor: pointer;
-  padding: 5px;
-  margin: 0;
-  border: 1px solid black;
-  box-sizing: border-box;
-}
-
 p {
-  padding: 5px;
+  padding: 0
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  background: var(--dark-grey-fill-color);
+}
+
+* {
+  font-family: 'Baloo Bhaijaan 2', sans-serif;
+  font-size: var(--normal-font-size);
+  font-weight: 600;
+  color: white;
+  box-sizing: border-box;
   margin: 0;
-  top: 50%;
+  padding: 0;
 }
 
 ul {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  height: 90vh;
+  overflow: auto;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+*::placeholder {
+  color: white;
+}
+
+#content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 6fr 0.1fr; 
+  grid-template-areas:
+    "tools tools tools"
+    "input recipe output"
+    "input go output";
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+  padding: 15px 10px 20px 10px;
+}
+
+
+#tools_block {
+  grid-area: tools;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+#input_block {
+  grid-area: input;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#recipe_block {
+  grid-area: recipe;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100%;
   overflow-y: scroll;
   -ms-overflow-style: none;  
   scrollbar-width: none;
 }
-ul::-webkit-scrollbar {
-  display: none;
+
+#go_button {
+  grid-area: go;
+  text-align: center;
+  display: block;
+  cursor: pointer;
+}
+#go_button:hover {
+  color: var(--blue-fill-color);
+  background-color: white;
 }
 
+#output_block {
+  grid-area: output;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
-li {
-  border-bottom: 1px solid black;
-  padding: 10px 10px;
+.block_box, #go_button {
+  border: 1px solid var(--blue-border-color);
+  border-radius: 20px;
+  padding: 10px;
 }
 
 #tools_ul {
-  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+  border: 1px solid var(--grey-border-color);
+  border-radius: 20px;
+  padding: 10px;
 }
 
+#tools_ul > li {
+  background-color: var(--blue-fill-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px 0;
+}
+
+#tools_ul > li:nth-child(odd) {
+  background-color: var(--blue-fill-color);
+}
+
+#tools_ul > li:nth-child(odd):hover {
+  color: var(--blue-fill-color);
+  background-color: white;
+}
+
+#tools_ul > li:nth-child(even) {
+  background-color: var(--violet-fill-color);
+}
+
+#tools_ul > li:nth-child(even):hover {
+  color: var(--violet-fill-color);
+  background-color: white;
+}
+
+
+.label {
+  margin: 0 auto;
+}
+
+.label > p {
+  font-size: var(--big-font-size);
+}
+
+textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none;
+  
+  font-size: var(--small-font-size);
+  width: 100%;
+  height: 100%;
+  background-color: var(--light-grey-fill-color);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+textarea:focus {
+  border: none;
+}
+
+#recipe_ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 20px;
+  padding: 5px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+[data-paused="true"] {
+  background-color: var(--red-color);
+}
+
+#recipe_ul > li{
+  width: 100%;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.operation_label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+}
 
 input {
   pointer-events: initial;
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 2px solid black;
+  outline: none;
+  border-bottom: 1px solid white;
   line-height: 1.5em;
 }
 
 input:invalid {
-  border-bottom: 2px solid red;
+  border-bottom: 1px solid var(--red-color);
 }
-
 .icon {
   cursor: pointer;
-  text-align: right;
+  vertical-align: sub;
 }
 
-.operation_name {
-  text-align: left;
-}
-
-.operation_label {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-[data-paused="true"] {
-  background-color: rgb(240, 77, 77);
+@media only screen and (max-width: 800px) {
+    * {
+      font-size: var(--small-font-size);
+    }
+    .label > p {
+      font-size: var(--normal-font-size);
+    }
+    #tools_ul > li {
+      padding: 5px 30px;
+    }
+    #tools_ul {
+      padding: 5px;
+      gap: 5px;
+    }
+    .block_box, #go_button {
+      border: none;
+      padding: 0px;
+    }
+    #go_button {
+      background-color: var(--blue-fill-color);
+      width: 100%;
+    }
+    #content {
+      display: flex;
+      flex-direction: column;
+      padding: 5px;
+    }
 }
