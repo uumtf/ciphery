@@ -35,7 +35,7 @@
 
     <div class="block_box" id="output_block">
       <div class="label" id="output"><p>Output</p></div>
-      <textarea id="output_textarea" autofocus></textarea>
+      <textarea id="output_textarea" readonly></textarea>
     </div>
     
     <div id="go_button" onclick="cipher()">Go</div>
