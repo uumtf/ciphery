@@ -77,7 +77,6 @@ function to_recipe(operation) {
   // save the recipe in sessionStorage so that it doesn't disappear when page is reloaded
   sessionStorage.setItem("recipe", ul.innerHTML);
   // cipher the input text
-  cipher();
 }
 
 /*
@@ -103,8 +102,6 @@ function change_state(change_state_icon) {
     li.removeAttribute("data-paused");
   }
 
-  // cipher the input text
-  cipher();
 }
 
 /*
@@ -116,7 +113,6 @@ function from_recipe(remove_icon) {
   // remove operation and cipher the input text
   let li = remove_icon.parentNode.parentNode.parentNode;
   li.remove();
-  cipher();
   // save the recipe in sessionStorage 
   const ul = document.getElementById("recipe_ul");
   sessionStorage.setItem("recipe", ul.innerHTML);
@@ -128,7 +124,6 @@ function from_recipe(remove_icon) {
 */
 function save_recipe(input) {
   input.setAttribute("value", input.value);
-  cipher();
   const ul = document.getElementById("recipe_ul");
   sessionStorage.setItem("recipe", ul.innerHTML);
 }
