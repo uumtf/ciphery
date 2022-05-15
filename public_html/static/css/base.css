@@ -13,9 +13,7 @@
     --violet-fill-color: #DE5BEA;
     --red-color: rgba(234, 91, 125, 0.65);
 }
-p {
-  padding: 0
-}
+
 html, body {
   height: 100%;
   width: 100%;
@@ -226,6 +224,7 @@ input {
 input:invalid {
   border-bottom: 1px solid var(--red-color);
 }
+
 .icon {
   cursor: pointer;
   vertical-align: sub;

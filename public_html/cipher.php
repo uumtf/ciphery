@@ -12,7 +12,8 @@ $data = json_decode(file_get_contents('php://input'), true);
 $operations = $data["operations"];
 $plaintext = $data["plaintext"];
 $ciphertext = $plaintext;
-#loop through all the operations and encrypt the input text one by one
+
+// loop through all the operations and encrypt the input text one by one
 foreach($operations as $index => $op) {
   foreach($op as $op_name => $op_key) {
     if(function_exists($op_name)) {
