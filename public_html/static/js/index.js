@@ -41,7 +41,7 @@ function to_recipe(operation) {
   // set attributes for a caesar encode or decode operation
   // key can be only from 1-25 since there are 26 letters in the English alphabet
   if(operation_id == "caesar_encode" ||
-      operation_id == "caesar_decode") {
+     operation_id == "caesar_decode") {
     input.setAttribute("type", "number");
     input.setAttribute("min", "1");
     input.setAttribute("max", "25");
@@ -51,13 +51,14 @@ function to_recipe(operation) {
   // set attributes for a caesar encode or decode operation
   // key consists of small and capital latin letters
   if(operation_id == "vigenere_encode" ||
-    operation_id == "vigenere_decode") {
+     operation_id == "vigenere_decode") {
     input.setAttribute("type", "text");
     input.setAttribute("pattern", "[a-zA-Z]+");
     input.setAttribute("title", "Only english letters");
   }
   li.appendChild(div);
-  if(operation_id == "vigenere_crack") {
+  if(operation_id == "vigenere_crack" ||
+     operation_id == "caesar_crack") {
     let select = document.createElement("select");
     select.setAttribute("name", operation_id);
     let option_english = document.createElement("option");

@@ -41,6 +41,32 @@ function slice_by_step($str, $start, $end, $step) {
 }
 
 /*
+ * Function that calculates the distribution of letters in text with default
+ * distribution in given language
+ *
+ * @param {string} text     - given text
+ * @param {string} language - Language to that it is being compared
+ *
+ * @return {int} Final distribution of letters in given text
+ *
+*/
+function frequency_compare($text, $language) {
+  $frequency = array_fill(0, count(constant($language)), 0);
+  $chars = str_split($text);
+  $length = count($chars);
+  foreach($chars as $char) {
+    $frequency[ord($char) - ord('a')]++;
+  }
+  //print_r($frequency);
+  $final_distribution = 0;
+  foreach(array_combine($frequency, constant($language)) as $have => $need) {
+    $final_distribution += abs(($have/$length) - $need);
+  }
+
+  return $final_distribution;
+}
+
+/*
  * Function that implements caesar encryption
  * @param {string} plaintext - Plaintext
  * @param {int}    key       - Shift number
@@ -76,6 +102,34 @@ function caesar_decode($ciphertext, $key) {
   return caesar_encode($ciphertext, $key);
 }
 
+/*
+ * Function that implements cracking the caesar cipher 
+ * @param {string} ciphertext    - Ciphertext 
+ * @param {string} language      - Assumend language of plaintext
+ * @param {int} [key_min_length=1] - Minimal length of key 
+ * @param {int} [key_max_length=15] - Maximal kength of key
+ *
+ * @return {string} All possible variations of caesar shifts sorted by language match
+*/
+function caesar_crack($ciphertext, $language, $key_min_length=1, $key_max_length=15) {
+  $language = strtoupper($language);
+  if(!isset($language)) {
+    return "This language is not supported yet";
+  }
+  $chars = strtolower(preg_replace("/[^a-zA-Z]+/", "", $ciphertext));
+
+  $keys = [];
+  for($key = 0; $key < 26; $key++) {
+    $keys[$key] = frequency_compare(caesar_decode($chars, $key), $language); 
+  }  
+  asort($keys);
+  $result = "";
+  foreach($keys as $key => $distribution) {
+    $result .= "Key: ".$key."\n\n".caesar_decode($ciphertext, $key).
+                "\n---------------------------------------\n";
+  }
+  return $result;
+}
 
 /*
  * Function that implements vigenere encryption 
@@ -105,7 +159,6 @@ function vigenere_encode($plaintext, $key) {
   return $ciphertext;
 }
 
-
 /*
  * Function that implements vigenere decryption 
  * @param {string} ciphertext - ciphertext
@@ -134,33 +187,10 @@ function vigenere_decode($ciphertext, $key) {
   return $plaintext;
 }
 
-/*
- * Function that calculates the distribution of letters in text with default
- * distribution in given language
- *
- * @param {string} text     - given text
- * @param {string} language - Language to that it is being compared
- *
- * @return {int} Final distribution of letters in given text
- *
-*/
-function frequency_compare($text, $language) {
-  $frequency = array_fill(0, count(constant($language)), 0);
-  $chars = str_split($text);
-  $length = count($chars);
-  foreach($chars as $char) {
-    $frequency[ord($char) - ord('a')]++;
-  }
-  $final_distribution = 0;
-  foreach(array_combine($frequency, constant($language)) as $have => $need) {
-    $final_distribution += abs(($have/$length) - $need);
-  }
 
-  return $final_distribution;
-}
 
 /*
- * Function that implements cracking the vigenere cipher 
+ * Function that implements cracking the vigenere cipher with frequency analysis 
  * @param {string} ciphertext    - Ciphertext 
  * @param {string} language      - Assumend language of plaintext
  * @param {int} [key_min_length=1] - Minimal length of key 

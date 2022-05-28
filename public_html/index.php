@@ -16,6 +16,7 @@
       <ul id="tools_ul">
         <li id="caesar_encode" onclick="to_recipe(this)">Caesar Encode</li>
         <li id="caesar_decode" onclick="to_recipe(this)">Caesar Decode</li>
+        <li id="caesar_crack" onclick="to_recipe(this)">Caesar Crack</li>
         <li id="vigenere_encode" onclick="to_recipe(this)">Vigenere Encode</li>
         <li id="vigenere_decode" onclick="to_recipe(this)">Vigenere Decode</li>
         <li id="vigenere_crack" onclick="to_recipe(this)">Vigenere Crack</li>
