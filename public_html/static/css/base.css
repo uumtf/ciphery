@@ -224,6 +224,17 @@ input:invalid {
   border-bottom: 1px solid var(--red-color);
 }
 
+select {
+  pointer-events: initial;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+option {
+  background-color: var(--dark-grey-fill-color);
+}
+
 .icon {
   cursor: pointer;
   vertical-align: sub;

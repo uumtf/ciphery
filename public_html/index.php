@@ -18,6 +18,7 @@
         <li id="caesar_decode" onclick="to_recipe(this)">Caesar Decode</li>
         <li id="vigenere_encode" onclick="to_recipe(this)">Vigenere Encode</li>
         <li id="vigenere_decode" onclick="to_recipe(this)">Vigenere Decode</li>
+        <li id="vigenere_crack" onclick="to_recipe(this)">Vigenere Crack</li>
         <li id="substitution_cipher" onclick="to_recipe(this)">Substitution cipher</li>
       </ul>
     </div>

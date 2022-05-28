@@ -57,7 +57,22 @@ function to_recipe(operation) {
     input.setAttribute("title", "Only english letters");
   }
   li.appendChild(div);
-  li.appendChild(input);
+  if(operation_id == "vigenere_crack") {
+    let select = document.createElement("select");
+    select.setAttribute("name", operation_id);
+    let option_english = document.createElement("option");
+    option_english.setAttribute("value", "english");
+    option_english.innerText = "English";
+    let option_german = document.createElement("option");
+    option_german.setAttribute("value", "german");
+    option_german.innerText = "German";
+    select.appendChild(option_english);
+    select.appendChild(option_german);
+    li.append(select);
+  }
+  else {
+    li.appendChild(input);
+  }
 
   // set attributes for a substitution cipher
   // the plaintext and ciphertext inputs without duplicates
