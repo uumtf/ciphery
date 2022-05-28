@@ -115,7 +115,7 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 30px;
+  gap: 10px;
   border: 1px solid var(--grey-border-color);
   border-radius: 20px;
   padding: 10px;
@@ -129,7 +129,7 @@ ul {
   cursor: pointer;
   flex-grow: 1;
   text-align: center;
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 
 #tools_ul > li:nth-child(odd) {
