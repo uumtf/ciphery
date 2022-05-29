@@ -57,12 +57,11 @@ function frequency_compare($text, $language) {
   foreach($chars as $char) {
     $frequency[ord($char) - ord('a')]++;
   }
-  //print_r($frequency);
   $final_distribution = 0;
-  foreach(array_combine($frequency, constant($language)) as $have => $need) {
+  foreach(constant($language) as $index => $need) {
+    $have = $frequency[$index];
     $final_distribution += abs(($have/$length) - $need);
   }
-
   return $final_distribution;
 }
 
@@ -221,7 +220,6 @@ function vigenere_crack($ciphertext, $language, $key_min_length=1, $key_max_leng
     }
     $keys[$key] = frequency_compare(vigenere_decode($chars, $key), $language);
   }
-
   asort($keys);
   $first_key = array_keys($keys)[0];
   $first_plaintext = vigenere_decode($ciphertext, $first_key);  
